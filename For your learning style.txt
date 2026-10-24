@@ -1,0 +1,38 @@
+For your learning style
+
+From your previous questions, you seem to prefer detailed, concept-first explanations rather than short definitions. I'd recommend:
+
+Concepts: W3Schools + Google's Machine Learning Crash Course
+Hands-on practice: Kaggle Learn
+When a topic feels difficult: StatQuest on YouTube
+Implementation and reference: Scikit-learn documentation
+
+The Study Roadmap I'd Recommend
+
+Since you're a BCA student, don't jump straight into deep learning. Build your foundation first.
+
+Python Basics
+NumPy
+Pandas
+Data Types (Discrete, Continuous, Categorical, Ordinal)
+Statistics
+Mean
+Median
+Mode
+Variance
+Standard Deviation
+Data Visualization
+Matplotlib
+Seaborn
+Machine Learning Basics
+Supervised Learning
+Unsupervised Learning
+Algorithms
+Linear Regression
+Logistic Regression
+Decision Trees
+KNN
+Naive Bayes
+Random Forest
+SVM
+Projects

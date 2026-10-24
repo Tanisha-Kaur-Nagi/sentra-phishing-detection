@@ -1,0 +1,8 @@
+<html>
+<head>
+<title>cute dog pics</title>
+</head>
+<body>
+<h2>style="background_color:red; color:white; text_align:center;">benefit of cute dogs</h2>
+</body>
+</html>

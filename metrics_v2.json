@@ -1,0 +1,96 @@
+{
+  "rows": 745652,
+  "comparison": [
+    {
+      "model": "Random Forest (100 trees)",
+      "accuracy": 0.8209,
+      "precision": 0.6198,
+      "recall": 0.7471,
+      "f1": 0.6775,
+      "confusion_matrix": [
+        [
+          94371,
+          17210
+        ],
+        [
+          9497,
+          28053
+        ]
+      ],
+      "train_seconds": 57.0
+    },
+    {
+      "model": "Random Forest (200 trees)",
+      "accuracy": 0.8206,
+      "precision": 0.6192,
+      "recall": 0.7464,
+      "f1": 0.6769,
+      "confusion_matrix": [
+        [
+          94341,
+          17240
+        ],
+        [
+          9521,
+          28029
+        ]
+      ],
+      "train_seconds": 124.9
+    },
+    {
+      "model": "Random Forest (300 trees)",
+      "accuracy": 0.8207,
+      "precision": 0.6194,
+      "recall": 0.7465,
+      "f1": 0.677,
+      "confusion_matrix": [
+        [
+          94355,
+          17226
+        ],
+        [
+          9519,
+          28031
+        ]
+      ],
+      "train_seconds": 189.2
+    },
+    {
+      "model": "Extra Trees (200 trees)",
+      "accuracy": 0.8186,
+      "precision": 0.6151,
+      "recall": 0.747,
+      "f1": 0.6747,
+      "confusion_matrix": [
+        [
+          94032,
+          17549
+        ],
+        [
+          9500,
+          28050
+        ]
+      ],
+      "train_seconds": 92.3
+    },
+    {
+      "model": "Gradient Boosting",
+      "accuracy": 0.8382,
+      "precision": 0.7964,
+      "recall": 0.4803,
+      "f1": 0.5993,
+      "confusion_matrix": [
+        [
+          106970,
+          4611
+        ],
+        [
+          19513,
+          18037
+        ]
+      ],
+      "train_seconds": 8.3
+    }
+  ],
+  "best_model": "Random Forest (100 trees)"
+}

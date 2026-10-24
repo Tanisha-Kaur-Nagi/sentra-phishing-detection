@@ -1,0 +1,9 @@
+node_modules/
+target/
+dist/
+.env
+*.joblib
+*.csv
+!*comparison.csv
+__pycache__/
+.vscode/

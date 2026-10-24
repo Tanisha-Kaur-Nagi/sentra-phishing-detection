@@ -1,0 +1,162 @@
+{
+  "train_rows": 188636,
+  "test_rows": 47159,
+  "results": [
+    {
+      "model": "Random Forest (full features)",
+      "accuracy": 1.0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "confusion_matrix": [
+        [
+          26970,
+          0
+        ],
+        [
+          0,
+          20189
+        ]
+      ]
+    },
+    {
+      "model": "Random Forest (URL-only)",
+      "accuracy": 0.9957,
+      "precision": 0.9982,
+      "recall": 0.9917,
+      "f1": 0.9949,
+      "confusion_matrix": [
+        [
+          26934,
+          36
+        ],
+        [
+          168,
+          20021
+        ]
+      ]
+    },
+    {
+      "model": "Logistic Regression (URL-only)",
+      "accuracy": 0.9934,
+      "precision": 0.9995,
+      "recall": 0.9851,
+      "f1": 0.9922,
+      "confusion_matrix": [
+        [
+          26960,
+          10
+        ],
+        [
+          301,
+          19888
+        ]
+      ]
+    }
+  ],
+  "comparison": [
+    {
+      "model": "Random Forest (100 trees)",
+      "accuracy": 0.9957,
+      "precision": 0.9982,
+      "recall": 0.9917,
+      "f1": 0.9949,
+      "confusion_matrix": [
+        [
+          26934,
+          36
+        ],
+        [
+          168,
+          20021
+        ]
+      ],
+      "train_seconds": 3.6
+    },
+    {
+      "model": "Random Forest (200 trees)",
+      "accuracy": 0.9957,
+      "precision": 0.9983,
+      "recall": 0.9916,
+      "f1": 0.9949,
+      "confusion_matrix": [
+        [
+          26935,
+          35
+        ],
+        [
+          169,
+          20020
+        ]
+      ],
+      "train_seconds": 7.1
+    },
+    {
+      "model": "Random Forest (300 trees)",
+      "accuracy": 0.9957,
+      "precision": 0.9983,
+      "recall": 0.9916,
+      "f1": 0.9949,
+      "confusion_matrix": [
+        [
+          26935,
+          35
+        ],
+        [
+          169,
+          20020
+        ]
+      ],
+      "train_seconds": 10.4
+    },
+    {
+      "model": "Extra Trees (200 trees)",
+      "accuracy": 0.9958,
+      "precision": 0.9985,
+      "recall": 0.9916,
+      "f1": 0.995,
+      "confusion_matrix": [
+        [
+          26939,
+          31
+        ],
+        [
+          169,
+          20020
+        ]
+      ],
+      "train_seconds": 5.8
+    },
+    {
+      "model": "Gradient Boosting",
+      "accuracy": 0.9957,
+      "precision": 0.9993,
+      "recall": 0.9908,
+      "f1": 0.995,
+      "confusion_matrix": [
+        [
+          26955,
+          15
+        ],
+        [
+          186,
+          20003
+        ]
+      ],
+      "train_seconds": 20.8
+    }
+  ],
+  "best_model": "Extra Trees (200 trees)",
+  "top_features": {
+    "is_https": 0.4213,
+    "path_length": 0.1803,
+    "num_slashes": 0.1718,
+    "num_digits": 0.0662,
+    "digit_ratio": 0.0563,
+    "url_length": 0.0262,
+    "num_letters": 0.0174,
+    "domain_length": 0.0168,
+    "num_subdomains": 0.0136,
+    "num_dots": 0.0095
+  }
+}

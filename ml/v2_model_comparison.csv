@@ -1,0 +1,6 @@
+model,accuracy,precision,recall,f1,train_seconds
+Random Forest (100 trees),0.8209,0.6198,0.7471,0.6775,57.0
+Random Forest (200 trees),0.8206,0.6192,0.7464,0.6769,124.9
+Random Forest (300 trees),0.8207,0.6194,0.7465,0.677,189.2
+Extra Trees (200 trees),0.8186,0.6151,0.747,0.6747,92.3
+Gradient Boosting,0.8382,0.7964,0.4803,0.5993,8.3
