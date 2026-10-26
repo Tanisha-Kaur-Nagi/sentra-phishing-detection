@@ -28,10 +28,12 @@ import java.util.Optional;
 @CrossOrigin(origins = "http://localhost:5173")
 public class PaymentController {
 
-    @Value("${cashfree.client-id}")
+    // The ":" at the end gives an empty default, so the backend still starts
+    // when cashfree-secrets.properties is missing.
+    @Value("${cashfree.client-id:}")
     private String clientId;
 
-    @Value("${cashfree.client-secret}")
+    @Value("${cashfree.client-secret:}")
     private String clientSecret;
 
     @Value("${cashfree.base-url:https://sandbox.cashfree.com/pg}")
@@ -60,9 +62,18 @@ public class PaymentController {
         return h;
     }
 
+    private boolean keysMissing() {
+        return clientId == null || clientId.isBlank() || clientSecret == null || clientSecret.isBlank();
+    }
+
     // POST /api/payments/create-order  body: {"userId": 1, "planName": "Solo"}
     @PostMapping("/create-order")
     public ResponseEntity<?> createOrder(@RequestBody Map<String, Object> body) {
+        if (keysMissing()) {
+            return ResponseEntity.status(503).body(Map.of("error",
+                    "Cashfree keys are not configured on this machine"));
+        }
+
         Long userId = Long.valueOf(String.valueOf(body.get("userId")));
         String planName = String.valueOf(body.get("planName"));
 
@@ -122,6 +133,11 @@ public class PaymentController {
     // POST /api/payments/verify  body: {"orderId": "sentra_1_Solo_1729..."}
     @PostMapping("/verify")
     public ResponseEntity<?> verify(@RequestBody Map<String, Object> body) {
+        if (keysMissing()) {
+            return ResponseEntity.status(503).body(Map.of("error",
+                    "Cashfree keys are not configured on this machine"));
+        }
+
         String orderId = String.valueOf(body.get("orderId"));
         String[] parts = orderId.split("_");
         if (parts.length != 4 || !parts[0].equals("sentra")) {
