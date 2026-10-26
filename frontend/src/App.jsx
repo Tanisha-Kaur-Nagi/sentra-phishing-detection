@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Landing from "./pages/Landing";
 import Login from "./pages/Login";
@@ -9,12 +8,9 @@ import AnalystDashboard from "./pages/AnalystDashboard";
 import AdminDashboard from "./pages/AdminDashboard";
 import AdminUsers from "./pages/AdminUsers";
 import Pricing from "./pages/Pricing";
-import AppLayout from "./components/AppLayout";
-import { getCurrentUser } from "./lib/api";
+import ProtectedPage from "./components/ProtectedPage";
 
 export default function App() {
-  const [role, setRole] = useState(getCurrentUser()?.role?.toLowerCase() || "user");
-
   return (
     <BrowserRouter>
       <Routes>
@@ -25,49 +21,49 @@ export default function App() {
         <Route
           path="/app/scan"
           element={
-            <AppLayout role={role} onRoleChange={setRole} title="Scan" subtitle="Check a URL or file before you open it">
+            <ProtectedPage allow={["user"]} title="Scan" subtitle="Check a URL or file before you open it">
               <UserDashboard />
-            </AppLayout>
+            </ProtectedPage>
           }
         />
         <Route
           path="/app/history"
           element={
-            <AppLayout role={role} onRoleChange={setRole} title="Scan history" subtitle="Everything you've submitted so far">
+            <ProtectedPage allow={["user"]} title="Scan history" subtitle="Everything you've submitted so far">
               <ScanHistory />
-            </AppLayout>
+            </ProtectedPage>
           }
         />
         <Route
           path="/app/pricing"
           element={
-            <AppLayout role={role} onRoleChange={setRole} title="Plans and pricing" subtitle="Pick the plan that fits you">
+            <ProtectedPage allow={["user"]} title="Plans and pricing" subtitle="Pick the plan that fits you">
               <Pricing />
-            </AppLayout>
+            </ProtectedPage>
           }
         />
         <Route
           path="/app/analyst"
           element={
-            <AppLayout role={role} onRoleChange={setRole} title="Review queue" subtitle="Low-confidence scans awaiting a human call">
+            <ProtectedPage allow={["analyst"]} title="Review queue" subtitle="Low-confidence scans awaiting a human call">
               <AnalystDashboard />
-            </AppLayout>
+            </ProtectedPage>
           }
         />
         <Route
           path="/app/admin"
           element={
-            <AppLayout role={role} onRoleChange={setRole} title="Platform overview" subtitle="Usage and detection trends">
+            <ProtectedPage allow={["admin"]} title="Platform overview" subtitle="Usage and detection trends">
               <AdminDashboard />
-            </AppLayout>
+            </ProtectedPage>
           }
         />
         <Route
           path="/app/admin/users"
           element={
-            <AppLayout role={role} onRoleChange={setRole} title="Users" subtitle="Manage registered accounts">
+            <ProtectedPage allow={["admin"]} title="Users" subtitle="Manage registered accounts">
               <AdminUsers />
-            </AppLayout>
+            </ProtectedPage>
           }
         />
 

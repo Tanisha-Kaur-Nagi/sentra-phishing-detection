@@ -45,6 +45,12 @@ export const api = {
   getUsage: (userId) => request(`/scans/usage/${userId}`),
   subscribe: (userId, planName) =>
     request('/plans/subscribe', { method: 'POST', body: JSON.stringify({ userId, planName }) }),
+
+  // Payments (Cashfree test mode)
+  createOrder: (userId, planName) =>
+    request('/payments/create-order', { method: 'POST', body: JSON.stringify({ userId, planName }) }),
+  verifyPayment: (orderId) =>
+    request('/payments/verify', { method: 'POST', body: JSON.stringify({ orderId }) }),
 };
 
 export function getCurrentUser() {

@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -35,7 +34,8 @@ public class PlanController {
         return ResponseEntity.ok(plans);
     }
 
-    // POST /api/plans/subscribe: body {"userId": 1, "planName": "Solo"}
+    // POST /api/plans/subscribe: only for switching back to Free.
+    // Paid plans are activated by /api/payments/verify after a real test payment.
     @PostMapping("/subscribe")
     public ResponseEntity<?> subscribe(@RequestBody Map<String, Object> body) {
         Long userId = Long.valueOf(String.valueOf(body.get("userId")));
@@ -48,8 +48,11 @@ public class PlanController {
         if (planOpt.isEmpty()) {
             return ResponseEntity.badRequest().body(Map.of("error", "Plan not found"));
         }
+        if (!"Free".equalsIgnoreCase(planName)) {
+            return ResponseEntity.status(402).body(Map.of("error", "Paid plans need a payment"));
+        }
 
-        // Cancel the old active subscription (if any)
+        // Switching to Free: cancel the old active subscription (if any)
         Optional<Subscription> old = subscriptionRepository
                 .findFirstByUserIdAndStatusOrderByStartedAtDesc(userId, "ACTIVE");
         if (old.isPresent()) {
@@ -57,20 +60,6 @@ public class PlanController {
             o.setStatus("CANCELLED");
             subscriptionRepository.save(o);
         }
-
-        // Choosing Free just means no active subscription
-        if ("Free".equalsIgnoreCase(planName)) {
-            return ResponseEntity.ok(Map.of("plan", "Free", "message", "Switched to Free plan"));
-        }
-
-        Subscription sub = new Subscription();
-        sub.setUserId(userId);
-        sub.setPlanId(planOpt.get().getId());
-        sub.setStatus("ACTIVE");
-        sub.setStartedAt(LocalDateTime.now());
-        sub.setEndsAt(LocalDateTime.now().plusMonths(1));
-        subscriptionRepository.save(sub);
-
-        return ResponseEntity.ok(Map.of("plan", planName, "message", "Subscribed to " + planName));
+        return ResponseEntity.ok(Map.of("plan", "Free", "message", "Switched to Free plan"));
     }
 }
